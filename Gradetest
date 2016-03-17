@@ -1,0 +1,19 @@
+package hw3.util;
+
+public class GradeTest {
+	
+	
+	public static void main(String []k){
+		
+		
+	for(Grade grade:Grade.values())
+		
+		
+		System.out.println(grade.toString());
+	
+		
+	
+	
+	}
+
+}
