@@ -1,0 +1,143 @@
+package hw3.main;
+
+import hw3.util.Grade;;
+
+public class CourseGrade {
+	
+	private String courseDepartment;
+	
+	private int courseCode;
+	
+	private int courseCredit;
+	
+	private Grade gradeTaken;
+	
+	
+	
+	public String getCourseDepartment() {
+		
+		return courseDepartment;
+	}
+	public void setCourseDepartment(String courseDepartment) {
+		
+		if(courseDepartment.length()>0  && courseDepartment.length()<=4)
+	
+		    this.courseDepartment = courseDepartment;
+		
+	}
+	public int getCourseCode() {
+		
+		return courseCode;
+	}
+	public void setCourseCode(int courseCode) {
+		
+		if(courseCode>=100 && courseCode<600)
+			
+		this.courseCode = courseCode;
+		
+		else 
+			
+			System.out.println("ERROR!!! COURSECODE MUST BE BETWEEN 100 AND 599");
+	}
+	public int getCourseCredit() {
+		return courseCredit;
+	}
+	public void setCourseCredit(int courseCredit) {
+		
+		if(courseCredit==3 || courseCredit==4)
+			
+		this.courseCredit = courseCredit;
+		
+		else
+			System.out.println("ERROR !!COURSECREDİT MUST BE 3 OR 4");
+	}
+	public Grade  getGradeTaken() {
+		
+		return gradeTaken;
+	}
+	public void setGradeTaken(Grade g) {
+		
+		
+		gradeTaken = g;
+	}
+	
+	  public void setGradeTaken(double val){
+		  
+		  if(val>=0 && val<=4.0){
+			  
+			  if(val>=0 && val<0.5){
+				  
+				  val=Math.round(val);
+		          gradeTaken=Grade.F;}
+			  if(val>=0.5 && val<1.5){
+				  
+				  val=Math.round(val);
+	              gradeTaken=Grade.D;}
+			  
+			  if(val>=1.5 && val<2.5){
+				  
+				  val=Math.round(val);
+		          gradeTaken=Grade.C;}
+			  
+			  if(val>=2.5 && val<3.5){
+				  val=Math.round(val);
+				  gradeTaken=Grade.B;}
+			  
+			  if(val>=3.5 && val<4.0){
+				  val=Math.round(val);
+				  gradeTaken=Grade.A;}
+			  
+			  
+				  
+	}
+		  else
+			   gradeTaken=Grade.F;
+		  
+			  
+		  }	
+	  
+	  
+	  public CourseGrade(){
+		  this("CENG",100,4,Grade.F);
+	  }
+	  
+	  
+	  public CourseGrade(String courseDepartment){
+		  this(courseDepartment,100,4,Grade.F);
+	  }
+	  
+	  
+	  public CourseGrade(String courseDepartment, int courseCode){
+		  this(courseDepartment,courseCode,4,Grade.F);
+		  }
+	  
+	  
+     public CourseGrade(String courseDepartment, int courseCode, int courseCredit){
+			  this(courseDepartment,courseCode,courseCredit,Grade.F);
+			  }
+     
+     
+	  
+     public CourseGrade(String courseDepartment, int courseCode, int courseCredit,Grade gradeTaken){
+			setCourseDepartment(courseDepartment);
+			setCourseCode(courseCode);
+			setCourseCredit(courseCredit);
+			setGradeTaken(gradeTaken);
+}
+
+     
+     
+     
+     public String toString(){
+	return "Department: "+courseDepartment+"\nCourseCode: "+String.valueOf(courseCode)+" Credit: "+String.valueOf(courseCredit)+" Grade: "+gradeTaken.toString();
+}
+
+
+
+
+}
+	
+	
+	
+
+
