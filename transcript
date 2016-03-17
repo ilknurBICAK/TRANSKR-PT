@@ -1,0 +1,101 @@
+package hw3.main;
+
+import java.util.ArrayList;
+
+public class Transcript {
+	
+	private int studentID;
+	
+	int numberOfcourse;
+	 
+    private  double GPA;
+    
+   
+
+    ArrayList<CourseGrade> Course;
+
+  
+  
+ 
+
+    Transcript(int studentID){
+
+        this.setStudentID(studentID);
+        
+        GPA=0.0;
+        
+        
+        Course = new ArrayList<>();
+
+    }
+
+
+    public  void addCourseTaken(CourseGrade course){
+    	
+      numberOfcourse++;
+      
+        if(course==null)
+        {
+
+         System.out.println("NULL");
+        }
+
+        else{
+        	
+        	
+         Course.add(course);
+
+          GPA(); 
+
+        }
+
+
+    }
+
+     public double GPA(){
+    	 
+        double total=0;
+
+
+       for(int i=0;i<numberOfcourse;i++){
+    	   
+    	   
+           total+=Course.get(i).getGradeTaken().getNumericValue();
+
+       }
+
+       this.GPA=total/numberOfcourse;
+
+        return GPA;
+    }
+
+
+     public String toString(){
+
+         String result="";
+
+         for(int i=0;i<numberOfcourse;i++){
+        	 
+        	 
+               result  +=   String.format("  %s \n",  Course.get(i).toString() );
+
+       }
+                    return result;
+     }
+
+
+                  public int getStudentID() {
+                	  
+                	  
+                	  
+                    return studentID;
+                    
+                 }
+
+               public void setStudentID(int studentID) {
+            	   
+            	   
+                    this.studentID = studentID;
+}
+
+}
