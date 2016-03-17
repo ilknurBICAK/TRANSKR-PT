@@ -1,0 +1,126 @@
+package hw3.main;
+
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class GenerateTranscription {
+	
+	public void takeInputFromUser(){
+		
+		Scanner input=new Scanner(System.in);
+		
+		System.out.println("Enter Student ID:");
+		
+		int studentID=input.nextInt();
+		
+		Transcript ogrenciTransCript = new Transcript(studentID);
+		
+	
+	
+	
+		while(true){
+			
+	
+		
+		System.out.println("Enter Department:");
+		
+		String department=input.next();
+
+		System.out.println("Enter Course Code:");
+		
+		int courseCode=input.nextInt();
+		
+		System.out.println("Enter Course Credit:");
+		
+		int Credit=input.nextInt();
+		
+		System.out.println("Enter Grade:");
+		
+	   double	grade=input.nextDouble();
+	
+		
+		
+		CourseGrade course=new CourseGrade(department,courseCode,Credit);
+		
+		course.setGradeTaken(grade);
+		
+		ogrenciTransCript.addCourseTaken(course);
+		
+		System.out.print(ogrenciTransCript.toString());
+		System.out.println("GPA:"+ogrenciTransCript.GPA());
+		int selection= input.nextInt();
+		
+		if(selection == -1)
+				
+				break;
+	}
+		
+	
+		
+		}
+		
+		
+	
+	
+	public void takeInputFromFile(){
+		
+		Scanner document=new Scanner(System.in);
+		
+		System.out.println("Enter a file name:");
+		
+	    String	documentname=document.nextLine();
+		
+		try {
+			
+		   FileReader	fd = new FileReader("C:\\Users\\ilknurbıcak\\Desktop\\" + documentname + ".txt");
+			
+			BufferedReader reader=new BufferedReader(fd);  
+		
+			String satir=new String();
+			
+			Transcript ogrenciTranscript = new Transcript(Integer.parseInt(reader.readLine()));
+			
+			while((satir=reader.readLine())!=null){
+				// Dosya sonuna gelene kadar oku
+				CourseGrade grade = new CourseGrade();
+				grade.setCourseDepartment(satir.substring(0, satir.indexOf(" ")));
+				
+				satir = satir.substring(satir.indexOf(" ") + 1);
+				
+				grade.setCourseCode(Integer.parseInt(satir.substring(0,satir.indexOf(" "))));
+				
+				satir = satir.substring(satir.indexOf(" ") + 1);
+				
+				grade.setCourseCredit(Integer.parseInt(satir.substring(0,satir.indexOf(" "))));
+				
+				satir = satir.substring(satir.indexOf(" ") + 1);
+				
+				grade.setGradeTaken(Double.parseDouble(satir));//direkt satır. Çünkü son kalan zaten not olacaktır.
+				
+				
+				ogrenciTranscript.addCourseTaken(grade);
+			}
+			System.out.println(ogrenciTranscript.toString());
+			
+		}
+		catch(Exception ex){
+			System.out.println("File not found!!");
+		}
+		
+		
+		}
+
+	
+	public static void main(String []k)
+	{
+		
+		 GenerateTranscription g=new GenerateTranscription();
+    g.takeInputFromUser();
+	//g.takeInputFromFile();
+	
+	}
+
+}
